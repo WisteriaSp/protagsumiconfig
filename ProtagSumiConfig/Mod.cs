@@ -31,10 +31,9 @@ namespace ProtagSumiConfig
             _configuration = context.Configuration;
             _modConfig = context.ModConfig;
 
-            // grab modDi modId :P
+            // grab modDir and modId
             string modDir = _modLoader.GetDirectoryForModId(_modConfig.ModId);
             string modId = _modConfig.ModId;
-
 
             var criFsCtl = _modLoader.GetController<ICriFsRedirectorApi>();
             if (criFsCtl == null || !criFsCtl.TryGetTarget(out var criFsApi))
@@ -45,7 +44,6 @@ namespace ProtagSumiConfig
                 );
                 return;
             }
-
 
             var bfEmuCtl = _modLoader.GetController<BF.File.Emulator.Interfaces.IBfEmulator>();
             var bmdEmuCtl = _modLoader.GetController<BMD.File.Emulator.Interfaces.IBmdEmulator>();
@@ -59,8 +57,8 @@ namespace ProtagSumiConfig
             if (costumeCtl == null || !costumeCtl.TryGetTarget(out var costumeApi)) { _logger.WriteLine("Costume API missing → Costumes broken.", System.Drawing.Color.Red); return; }
             if (ryoCtl == null || !ryoCtl.TryGetTarget(out var ryoApi)) { _logger.WriteLine("Ryo API missing → Audio configs broken.", System.Drawing.Color.Red); return; }
 
-            // check for rose and violet
             var active = _modLoader.GetActiveMods().Select(x => x.Generic.ModId).ToHashSet();
+            // check for rose and violet
             bool isRoseViolet = active.Contains("p5rpc.kasumi.roseandviolet");
             bool isCBT = active.Contains("p5r.enhance.cbt");
 
@@ -76,7 +74,7 @@ namespace ProtagSumiConfig
                 bmdEmu.AddDirectory(Path.Combine(modDir, "OptionalModFiles", "Events", "LargeEdits", "BMD"));
 
                 BindAllFilesIn(
-                    $"{Path.Combine("OptionalModFiles", "Events", "LargeEdits", "Characters", "Joker", "1")}",
+                    Path.Combine("OptionalModFiles", "Events", "LargeEdits", "Bind", "MODEL", "CHARACTER", "0004"),
                     modDir, criFsApi, modId
                 );
             }
@@ -84,7 +82,7 @@ namespace ProtagSumiConfig
             if (isCBT)
             {
                 BindAllFilesIn(
-                    $"{Path.Combine("OptionalModFiles", "Model", "CBT", "BetterExitMaterials", "Characters", "Joker", "1")}",
+                    Path.Combine("OptionalModFiles", "Model", "CBT-BetterExitMaterials"),
                     modDir, criFsApi, modId
                 );
             }
@@ -93,7 +91,7 @@ namespace ProtagSumiConfig
             if (_configuration.DarkenedFace)
             {
                 BindAllFilesIn(
-                    $"{Path.Combine("OptionalModFiles", "Model", "DarkenedFace", "Characters", "Joker", "1")}",
+                    Path.Combine("OptionalModFiles", "Model", "DarkenedFace"),
                     modDir, criFsApi, modId
                 );
             }
@@ -102,7 +100,7 @@ namespace ProtagSumiConfig
             if (_configuration.BlueDress)
             {
                 BindAllFilesIn(
-                    $"{Path.Combine("OptionalModFiles", "Model", "BlueDress", "Characters", "Joker", "1")}",
+                    Path.Combine("OptionalModFiles", "Model", "BlueDress"),
                     modDir, criFsApi, modId
                 );
             }
@@ -117,7 +115,7 @@ namespace ProtagSumiConfig
                         : "TracksuitConceptArt";
 
                 BindAllFilesIn(
-                    $"{Path.Combine("OptionalModFiles", "Model", selected, "Characters", "Joker", "1")}",
+                    Path.Combine("OptionalModFiles", "Model", selected),
                     modDir, criFsApi, modId
                 );
             }
@@ -126,7 +124,7 @@ namespace ProtagSumiConfig
             if (_configuration.AltMetaRun)
             {
                 BindAllFilesIn(
-                    $"{Path.Combine("OptionalModFiles", "Animation", "AltMetaRun", "Characters", "Joker", "1")}",
+                    Path.Combine("OptionalModFiles", "Animation", "AltMetaRun"),
                     modDir, criFsApi, modId
                 );
             }
@@ -209,26 +207,17 @@ namespace ProtagSumiConfig
                 foreach (var folderName in aoaFolders)
                 {
                     BindAllFilesIn(
-                        $"{Path.Combine("OptionalModFiles", "Model", folderName, "Characters", "Joker", "1")}",
+                        Path.Combine("OptionalModFiles", "Model", folderName),
                         modDir, criFsApi, modId
                     );
                 }
-            }
-
-            // OneCalledJay Bustup
-            if (_configuration.Bustup1 == Config.BustupSelection.OnedCalledJay)
-            {
-                BindAllFilesIn(
-                    $"{Path.Combine("OptionalModFiles", "Bustup", "OneCalledJay", "Characters", "Joker", "1")}",
-                    modDir, criFsApi, modId
-                );
             }
 
             // Weapon Ranged: LeverAction
             if (_configuration.WeaponRanged == Config.WeaponRangedEnum.LeverAction)
             {
                 BindAllFilesIn(
-                    $"{Path.Combine("OptionalModFiles", "Model", "Ranged", "Characters", "Joker", "1")}",
+                    Path.Combine("OptionalModFiles", "Model", "Ranged"),
                     modDir, criFsApi, modId
                 );
             }
@@ -237,7 +226,7 @@ namespace ProtagSumiConfig
             if (_configuration.MeleeRanged == Config.MeleeRangedEnum.Rapier)
             {
                 BindAllFilesIn(
-                    $"{Path.Combine("OptionalModFiles", "Model", "Melee", "Characters", "Joker", "1")}",
+                    Path.Combine("OptionalModFiles", "Model", "Melee"),
                     modDir, criFsApi, modId
                 );
             }
@@ -245,32 +234,37 @@ namespace ProtagSumiConfig
             // Costume Support
             if (_configuration.CostumeSupport)
             {
-                var costumesFolder = Path.Combine(modDir, "OptionalModFiles", "CostumeSupport", "Costumes");
+                var costumesFolder = Path.Combine(modDir, "OptionalModFiles", "Costumes");
                 costumeApi.AddCostumesFolder(modDir, costumesFolder);
             }
 
-            // MiniBoss Music
+            // Miniboss Music
             if (_configuration.MiniBossMusic)
             {
-                var audioFolder = Path.Combine(modDir, "OptionalModFiles", "Audio", "ShowToRemember");
+                var audioFolder = Path.Combine(modDir, "OptionalModFiles", "Audio", "ShowtoRemember");
                 if (Directory.Exists(audioFolder))
                 {
                     ryoApi.AddAudioPath(audioFolder, null);
                 }
             }
 
-            // L7M3 bustup
-            if (_configuration.Bustup1 == Config.BustupSelection.L7M3)
+            // Bustup (OneCalledJay or L7M3)
+            if (_configuration.Bustup1 == Config.BustupSelection.OnedCalledJay ||
+                _configuration.Bustup1 == Config.BustupSelection.L7M3)
             {
+                string bustupFolder = _configuration.Bustup1 == Config.BustupSelection.OnedCalledJay
+                    ? "OneCalledJay"
+                    : "L7M3";
+
                 BindAllFilesIn(
-                    $"{Path.Combine("OptionalModFiles", "Bustup", "L7M3", "Characters", "Joker", "1")}",
+                    Path.Combine("OptionalModFiles", "Bustup", bustupFolder),
                     modDir, criFsApi, modId
                 );
             }
         }
 
         /// <summary>
-        /// Recursively enumerates all files under the given “subPath” (relative to the mod folder),
+        /// recursively enumerates all files under the given “subPath” (relative to the mod folder),
         /// and issues a single AddBind(...) per file. If the directory doesn’t exist, it silently does nothing.
         /// </summary>
         private static void BindAllFilesIn(
@@ -280,25 +274,18 @@ namespace ProtagSumiConfig
             string modId
         )
         {
-            // Build the absolute on-disk path to “subPathRelativeToModDir”
-            // e.g. subPathRelativeToModDir = "OptionalModFiles/Model/BlueDress/Characters/Joker/1"
             string absoluteFolder = Path.Combine(modDir, subPathRelativeToModDir);
 
             if (!Directory.Exists(absoluteFolder))
             {
-                // If you want a missing-folder log, uncomment the next line:
                 // _logger.WriteLine($"Folder not found: {absoluteFolder}", System.Drawing.Color.Yellow);
                 return;
             }
 
             foreach (var filePath in Directory.EnumerateFiles(absoluteFolder, "*", SearchOption.AllDirectories))
             {
-                // Compute “relative inside CPK” by stripping off “absoluteFolder” from filePath
-                // e.g. filePath = "C:\...mod\OptionalModFiles\Model\BlueDress\Characters\Joker\1\face.bmd"
-                // → relativeCpkKey = "face.bmd" or if deeper "textures\01.dds"
                 string relativeCpkKey = Path.GetRelativePath(absoluteFolder, filePath).Replace(Path.DirectorySeparatorChar, '/');
 
-                // Tell CRI “when someone requests <relativeCpkKey> inside that folder, substitute with this on-disk file”
                 criFsApi.AddBind(
                     filePath,
                     relativeCpkKey,
@@ -316,7 +303,6 @@ namespace ProtagSumiConfig
         #endregion
 
         #region For Exports, Serialization etc.
-        // This parameterless ctor is only here to satisfy some serializers/reflection.
 #pragma warning disable CS8618
         public Mod() { }
 #pragma warning restore CS8618
