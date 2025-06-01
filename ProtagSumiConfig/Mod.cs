@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using ProtagSumiConfig.Configuration;
+﻿using ProtagSumiConfig.Configuration;
 using ProtagSumiConfig.Template;
 using Reloaded.Hooks.ReloadedII.Interfaces;
 using Reloaded.Mod.Interfaces;
@@ -36,21 +32,13 @@ namespace ProtagSumiConfig
             string modId = _modConfig.ModId;
 
             var criFsCtl = _modLoader.GetController<ICriFsRedirectorApi>();
-            if (criFsCtl == null || !criFsCtl.TryGetTarget(out var criFsApi))
-            {
-                _logger.WriteLine(
-                    $"[Mod:{modId}] CRI FS API unavailable → config options WILL NOT LOAD.",
-                    System.Drawing.Color.Red
-                );
-                return;
-            }
-
             var bfEmuCtl = _modLoader.GetController<BF.File.Emulator.Interfaces.IBfEmulator>();
             var bmdEmuCtl = _modLoader.GetController<BMD.File.Emulator.Interfaces.IBmdEmulator>();
             var pakEmuCtl = _modLoader.GetController<PAK.Stream.Emulator.Interfaces.IPakEmulator>();
             var costumeCtl = _modLoader.GetController<ICostumeApi>();
             var ryoCtl = _modLoader.GetController<IRyoApi>();
 
+            if (criFsCtl == null || !criFsCtl.TryGetTarget(out var criFsApi)) { _logger.WriteLine("CRI FS Emu missing → config binds broken.", System.Drawing.Color.Red); return; }
             if (bfEmuCtl == null || !bfEmuCtl.TryGetTarget(out var bfEmu)) { _logger.WriteLine("BF Emu missing → BF merges broken.", System.Drawing.Color.Red); return; }
             if (bmdEmuCtl == null || !bmdEmuCtl.TryGetTarget(out var bmdEmu)) { _logger.WriteLine("BMD Emu missing → BMD merges broken.", System.Drawing.Color.Red); return; }
             if (pakEmuCtl == null || !pakEmuCtl.TryGetTarget(out var pakEmu)) { _logger.WriteLine("PAK Emu missing → PAK merges broken.", System.Drawing.Color.Red); return; }
