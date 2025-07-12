@@ -117,6 +117,15 @@ namespace ProtagSumiConfig
                 );
             }
 
+            // Lawson
+            if (_configuration.LawsonOutfit)
+            {
+                BindAllFilesIn(
+                    Path.Combine("OptionalModFiles", "Model", "Lawson"),
+                    modDir, criFsApi, modId
+                );
+            }
+
             // Women’s Bath House (includes BF/BMD dirs)
             if (_configuration.Bathhouse)
             {
@@ -132,12 +141,6 @@ namespace ProtagSumiConfig
                 bfEmu.AddDirectory(Path.Combine(modDir, "OptionalModFiles", "Misc", "ThievesDen", "BF"));
                 bmdEmu.AddDirectory(Path.Combine(modDir, "OptionalModFiles", "Misc", "ThievesDen", "BMD"));
                 pakEmu.AddDirectory(Path.Combine(modDir, "OptionalModFiles", "Misc", "ThievesDen", "PAK"));
-            }
-
-            // Women’s Bath House Event
-            if (_configuration.BathActivity)
-            {
-                criFsApi.AddProbingPath(Path.Combine(modDir, "OptionalModFiles", "Events", "Bath"));
             }
 
             // Shujin Restroom

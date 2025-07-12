@@ -210,6 +210,49 @@
             "AssetFileName": "Mod.zip"
           },
           "ReleaseMetadataName": "Reloaded.Universal.FileEmulationFramework.ReleaseMetadata.json"
+        },
+        "p5rpc.flowscriptframework": {
+          "Config": {
+            "UserName": "Secre-C",
+            "RepositoryName": "p5rpc.flowscriptframework",
+            "UseReleaseTag": true,
+            "AssetFileName": "Mod.zip"
+          },
+          "ReleaseMetadataName": "p5rpc.flowscriptframework.ReleaseMetadata.json"
+        },
+        "p5rpc.evt.fadeouttablemerge": {
+          "Config": {
+            "UserName": "DeathChaos25",
+            "RepositoryName": "p5rpc.evt.fadeouttablemerge",
+            "UseReleaseTag": true,
+            "AssetFileName": "Mod.zip"
+          },
+          "ReleaseMetadataName": "p5rpc.evt.fadeouttablemerge.ReleaseMetadata.json"
+        }
+      }
+    },
+    "GameBananaDependencies": {
+      "IdToConfigMap": {
+        "p5r.enhance.cbt": {
+          "Config": {
+            "ItemType": "Mod",
+            "ItemId": 432481
+          },
+          "ReleaseMetadataName": "p5r.enhance.cbt.reloaded.ReleaseMetadata.json"
+        },
+        "p5rpc.patch.forcejokername": {
+          "Config": {
+            "ItemType": "mods",
+            "ItemId": 587965
+          },
+          "ReleaseMetadataName": "p5rpc.patch.forcejokername.ReleaseMetadata.json"
+        },
+        "p5rpc.flowscriptframework": {
+          "Config": {
+            "ItemType": "Mod",
+            "ItemId": 510809
+          },
+          "ReleaseMetadataName": "p5rpc.flowscriptframework.ReleaseMetadata.json"
         }
       }
     }
@@ -220,7 +263,6 @@
     "P5R.CostumeFramework",
     "p5r.enhance.cbt",
     "p5rpc.modloader",
-    "p5rpc.patch.forcejokername",
     "reloaded.sharedlib.hooks",
     "reloaded.universal.fileemulationframework.bf",
     "reloaded.universal.fileemulationframework.bmd",

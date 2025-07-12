@@ -171,8 +171,15 @@ namespace ProtagSumiConfig.Configuration
         [DisplayName("Blue Dress over Winter Casual")]
         [Description("Replaces the winter casual outfit with the blue dress outfit from Kasumi's SL.")]
         [DefaultValue(false)]
-        [Display(Order = 13)]
+        [Display(Order = 12)]
         public bool BlueDress { get; set; } = false;
+
+        [Category("Model")]
+        [DisplayName("Lawson Outfit over 777 Outfit")]
+        [Description("Replaces the 777 work outfit with the Lawson outfit from the December P5 Beta.")]
+        [DefaultValue(false)]
+        [Display(Order = 13)]
+        public bool LawsonOutfit { get; set; } = false;
 
         [Category("Model")]
         [DisplayName("Recolored Tracksuit")]
@@ -189,15 +196,15 @@ namespace ProtagSumiConfig.Configuration
         public WeaponRangedEnum WeaponRanged { get; set; }
 
         [Category("Model")]
-        [DisplayName("Ranged Weapon")]
+        [DisplayName("Melee Weapon")]
         [Description("Choose between Violet's rapier or Joker's daggers.")]
         [DefaultValue(MeleeRangedEnum.Rapier)]
         [Display(Order = 16)]
         public MeleeRangedEnum MeleeRanged { get; set; }
 
         [Category("Flowscript and BMD")]
-        [DisplayName("Women's Bath House")]
-        [Description("Contains flowscript and msg edits to make the Yongen-Jaya Bath House women's only.")]
+        [DisplayName("Bathhouse Edits")]
+        [Description("Contains event, flowscript, & msg edits to make the Yongen-Jaya Bath House women's only.")]
         [DefaultValue(true)]
         [Display(Order = 17)]
         public bool Bathhouse { get; set; } = true;
@@ -222,14 +229,6 @@ namespace ProtagSumiConfig.Configuration
         [DefaultValue(true)]
         [Display(Order = 20)]
         public bool EventEditsBig { get; set; } = true;
-
-        [Category("Events")]
-        [DisplayName("Women's Bath House Event")]
-        [Description("Contains event edits needed for the Bath House activity. Disable if causing issues or if the flowscript config is disabled.")]
-        [DefaultValue(true)]
-        [Display(Order = 21)]
-        public bool BathActivity { get; set; } = true; // bool used in Mod.CS, not the folder name, but the bool name
-
     }
 
     /// <summary>
