@@ -22,6 +22,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "P5R.CostumeFramework.Interf
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ryo.Interfaces", "M:\Drives\LDrive\Repos2\kasumivoicelineconfig\Interfaces\Ryo\Ryo.Interfaces\Ryo.Interfaces.csproj", "{28B4E9FC-D218-43B1-AE8D-90A2A6A8CF8C}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SPD.File.Emulator.Interfaces", "Interfaces\FileEmulationFramework\Emulator\Interfaces\SPD.File.Emulator.Interfaces\SPD.File.Emulator.Interfaces.csproj", "{B4CEACAE-1EE3-4E76-BECF-AA7FA268EC76}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -60,6 +62,10 @@ Global
 		{28B4E9FC-D218-43B1-AE8D-90A2A6A8CF8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28B4E9FC-D218-43B1-AE8D-90A2A6A8CF8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28B4E9FC-D218-43B1-AE8D-90A2A6A8CF8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4CEACAE-1EE3-4E76-BECF-AA7FA268EC76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4CEACAE-1EE3-4E76-BECF-AA7FA268EC76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4CEACAE-1EE3-4E76-BECF-AA7FA268EC76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4CEACAE-1EE3-4E76-BECF-AA7FA268EC76}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

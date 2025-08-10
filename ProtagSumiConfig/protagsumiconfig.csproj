@@ -14,6 +14,8 @@
          If you set this to true, trimming will be enabled when you publish the mod.
          Test trimming with: `BuildLinked.ps1` in PowerShell. -->
     <ReloadedILLink>false</ReloadedILLink>
+    <DebugType>none</DebugType>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -35,7 +37,7 @@
 
   <ItemGroup>
     <Content Include="ModConfig.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Update="Preview.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -52,9 +54,10 @@
     <ProjectReference Include="..\Interfaces\CriFs.V2.Hook.ReloadedII\Interfaces\CriFs.V2.Hook.Interfaces\CriFs.V2.Hook.Interfaces.csproj" />
     <ProjectReference Include="..\Interfaces\FileEmulationFramework\Emulator\Interfaces\BF.File.Emulator.Interfaces\BF.File.Emulator.Interfaces.csproj" />
     <ProjectReference Include="..\Interfaces\FileEmulationFramework\Emulator\Interfaces\BMD.File.Emulator.Interfaces\BMD.File.Emulator.Interfaces.csproj" />
-	<ProjectReference Include="..\Interfaces\FileEmulationFramework\Emulator\Interfaces\PAK.Stream.Emulator.Interfaces\PAK.Stream.Emulator.Interfaces.csproj" />
-	<ProjectReference Include="M:\Drives\LDrive\Repos2\kasumivoicelineconfig\Interfaces\Ryo\Ryo.Interfaces\Ryo.Interfaces.csproj" />
-	<ProjectReference Include="M:\Drives\LDrive\Repos2\protagsumiaddonconfig\Interfaces\P5R.CostumeFramework\P5R.CostumeFramework.Interfaces\P5R.CostumeFramework.Interfaces.csproj" />
+  <ProjectReference Include="..\Interfaces\FileEmulationFramework\Emulator\Interfaces\PAK.Stream.Emulator.Interfaces\PAK.Stream.Emulator.Interfaces.csproj" />
+  <ProjectReference Include="..\Interfaces\FileEmulationFramework\Emulator\Interfaces\SPD.File.Emulator.Interfaces\SPD.File.Emulator.Interfaces.csproj" />
+  <ProjectReference Include="M:\Drives\LDrive\Repos2\kasumivoicelineconfig\Interfaces\Ryo\Ryo.Interfaces\Ryo.Interfaces.csproj" />
+  <ProjectReference Include="M:\Drives\LDrive\Repos2\protagsumiaddonconfig\Interfaces\P5R.CostumeFramework\P5R.CostumeFramework.Interfaces\P5R.CostumeFramework.Interfaces.csproj" />
   </ItemGroup>
 
 </Project>

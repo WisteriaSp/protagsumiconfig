@@ -35,6 +35,7 @@ namespace ProtagSumiConfig
             var bfEmuCtl = _modLoader.GetController<BF.File.Emulator.Interfaces.IBfEmulator>();
             var bmdEmuCtl = _modLoader.GetController<BMD.File.Emulator.Interfaces.IBmdEmulator>();
             var pakEmuCtl = _modLoader.GetController<PAK.Stream.Emulator.Interfaces.IPakEmulator>();
+            var spdEmuCtl = _modLoader.GetController<SPD.File.Emulator.Interfaces.ISpdEmulator>();
             var costumeCtl = _modLoader.GetController<ICostumeApi>();
             var ryoCtl = _modLoader.GetController<IRyoApi>();
 
@@ -42,6 +43,7 @@ namespace ProtagSumiConfig
             if (bfEmuCtl == null || !bfEmuCtl.TryGetTarget(out var bfEmu)) { _logger.WriteLine("BF Emu missing → BF merges broken.", System.Drawing.Color.Red); return; }
             if (bmdEmuCtl == null || !bmdEmuCtl.TryGetTarget(out var bmdEmu)) { _logger.WriteLine("BMD Emu missing → BMD merges broken.", System.Drawing.Color.Red); return; }
             if (pakEmuCtl == null || !pakEmuCtl.TryGetTarget(out var pakEmu)) { _logger.WriteLine("PAK Emu missing → PAK merges broken.", System.Drawing.Color.Red); return; }
+            if (spdEmuCtl == null || !spdEmuCtl.TryGetTarget(out var spdEmu)) { _logger.WriteLine("SPD Emu missing → SPD merges broken.", System.Drawing.Color.Red); return; }
             if (costumeCtl == null || !costumeCtl.TryGetTarget(out var costumeApi)) { _logger.WriteLine("Costume API missing → Costumes broken.", System.Drawing.Color.Red); return; }
             if (ryoCtl == null || !ryoCtl.TryGetTarget(out var ryoApi)) { _logger.WriteLine("Ryo API missing → Audio configs broken.", System.Drawing.Color.Red); return; }
 
@@ -155,6 +157,7 @@ namespace ProtagSumiConfig
             {
                 criFsApi.AddProbingPath(Path.Combine(modDir, "OptionalModFiles", "Gameplay", "Equipment"));
                 pakEmu.AddDirectory(Path.Combine(modDir, "OptionalModFiles", "Gameplay", "Equipment", "FEmulator", "PAK"));
+                bmdEmu.AddDirectory(Path.Combine(modDir, "OptionalModFiles", "Gameplay", "Equipment", "FEmulator", "BMD"));
             }
 
             // Persona Swap Config
@@ -164,6 +167,7 @@ namespace ProtagSumiConfig
                 criFsApi.AddProbingPath(Path.Combine(modDir, "OptionalModFiles", "Gameplay", "Personas"));
                 pakEmu.AddDirectory(Path.Combine(modDir, "OptionalModFiles", "Gameplay", "Personas", "FEmulator", "PAK"));
                 bmdEmu.AddDirectory(Path.Combine(modDir, "OptionalModFiles", "Gameplay", "Personas", "FEmulator", "BMD"));
+                bfEmu.AddDirectory(Path.Combine(modDir, "OptionalModFiles", "Gameplay", "Personas", "FEmulator", "BF"));
 
                 string cendrillonFolder =
                     _configuration.PersonasMod == Config.CendrillonMod.DefaultCendrillon
@@ -213,6 +217,15 @@ namespace ProtagSumiConfig
                 );
             }
 
+            // Menu Art
+            if (_configuration.MenuArt == Config.MenuArtEnum.Neptune)
+            {
+                BindAllFilesIn(
+                    Path.Combine("OptionalModFiles", "Misc", "Herotex", "Neptune"),
+                    modDir, criFsApi, modId
+                );
+            }
+
             // Weapon Melee: Rapier
             if (_configuration.MeleeRanged == Config.MeleeRangedEnum.Rapier)
             {
@@ -237,6 +250,7 @@ namespace ProtagSumiConfig
                 {
                     ryoApi.AddAudioPath(audioFolder, null);
                 }
+                spdEmu.AddDirectory(Path.Combine(modDir, "OptionalModFiles", "Audio", "SPD"));
             }
 
             // Bustup (OneCalledJay or L7M3)

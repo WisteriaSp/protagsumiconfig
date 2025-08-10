@@ -8,8 +8,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ProtagSumiConfig.Configuration
 {
-	public class Config : Configurable<Config>
-	{
+    public class Config : Configurable<Config>
+    {
         /*
             User Properties:
                 - Please put all of your configurable properties here.
@@ -82,6 +82,15 @@ namespace ProtagSumiConfig.Configuration
             Smug,
         }
 
+        public enum MenuArtEnum
+        {
+            [Display(Name = "Default (L7M3)")]
+            Default,
+
+            [Display(Name = "Neptune")]
+            Neptune,
+        }
+
         public enum BustupSelection
         {
             Default,
@@ -112,17 +121,24 @@ namespace ProtagSumiConfig.Configuration
         public bool ThievesDenAddon { get; set; } = true;
 
         [Category("Misc")]
-        [DisplayName("Mini Boss Music")]
-        [Description("Placeholder")]
+        [DisplayName("Show to Remember over Keeper of Lust")]
+        [Description("Replaces Keeper of Lust with an original miniboss track by PeaMix.")]
         [DefaultValue(true)]
         [Display(Order = 4)]
         public bool MiniBossMusic { get; set; } = true;
 
         [Category("Misc")]
+        [DisplayName("Pause Menu Art")]
+        [Description("Select your preferred Pause Menu art.")]
+        [DefaultValue(MenuArtEnum.Default)]
+        [Display(Order = 5)]
+        public MenuArtEnum MenuArt { get; set; }
+
+        [Category("Misc")]
         [DisplayName("No All-Out-Attack Portrait")]
         [Description("Removes the All-Out-Attack finisher art. By lyncpk")]
         [DefaultValue(AoAArtEnum.Default)]
-        [Display(Order = 5)]
+        [Display(Order = 6)]
         public AoAArtEnum AoAArt { get; set; }
 
         [Category("Gameplay")]
@@ -137,6 +153,7 @@ namespace ProtagSumiConfig.Configuration
         [Description("Swaps Arsene, Raoul, and Satanael to use Cendrillon, Vanadis, and Ella. (By xJustAdam)")]
         [DefaultValue(CendrillonMod.Disabled)]
         [Display(Order = 7)]
+        [Display(Order = 8)]
         public CendrillonMod PersonasMod { get; set; }
 
         [Category("Gameplay")]
@@ -144,6 +161,7 @@ namespace ProtagSumiConfig.Configuration
         [Description("Modifies affinities, stats, and skillsets to match Cendrillon/Vanadis. Recommended to use with Violet's Personas (by HappyGrinch08)")]
         [DefaultValue(false)]
         [Display(Order = 8)]
+        [Display(Order = 9)]
         public bool Skillset { get; set; } = false;
 
         [Category("Model")]
@@ -151,6 +169,7 @@ namespace ProtagSumiConfig.Configuration
         [Description("Replaces the metaverse run animation with her field running animation, similar to lpspectrum's mod.")]
         [DefaultValue(false)]
         [Display(Order = 9)]
+        [Display(Order = 10)]
         public bool AltMetaRun { get; set; } = false;
 
         [Category("Model")]
@@ -158,6 +177,7 @@ namespace ProtagSumiConfig.Configuration
         [Description("Enables costumes. Keep this option ENABLED unless it's causing issues.")]
         [DefaultValue(true)]
         [Display(Order = 10)]
+        [Display(Order = 11)]
         public bool CostumeSupport { get; set; } = true;
 
         [Category("Model")]
@@ -165,6 +185,7 @@ namespace ProtagSumiConfig.Configuration
         [Description("Removes the face darkening when summoning a persona. Meant to be used with the No Darkened Faces mod, disable if you'd like.")]
         [DefaultValue(true)]
         [Display(Order = 11)]
+        [Display(Order = 12)]
         public bool DarkenedFace { get; set; } = true;
 
         [Category("Model")]
@@ -172,6 +193,7 @@ namespace ProtagSumiConfig.Configuration
         [Description("Replaces the winter casual outfit with the blue dress outfit from Kasumi's SL.")]
         [DefaultValue(false)]
         [Display(Order = 12)]
+        [Display(Order = 13)]
         public bool BlueDress { get; set; } = false;
 
         [Category("Model")]
@@ -179,6 +201,7 @@ namespace ProtagSumiConfig.Configuration
         [Description("Replaces the 777 work outfit with the Lawson outfit from the December P5 Beta.")]
         [DefaultValue(false)]
         [Display(Order = 13)]
+        [Display(Order = 14)]
         public bool LawsonOutfit { get; set; } = false;
 
         [Category("Model")]
@@ -186,6 +209,7 @@ namespace ProtagSumiConfig.Configuration
         [Description("Replaces the gold workout outfit with a recolored Shujin Academy tracksuit outfit or a recolor by MyTamagos based on concept art.")]
         [DefaultValue(TracksuitEnum.Default)]
         [Display(Order = 14)]
+        [Display(Order = 15)]
         public TracksuitEnum TracksuitSelection { get; set; }
 
         [Category("Model")]
@@ -193,6 +217,7 @@ namespace ProtagSumiConfig.Configuration
         [Description("Choose between Violet's lever action gun or Joker's pistols.")]
         [DefaultValue(WeaponRangedEnum.LeverAction)]
         [Display(Order = 15)]
+        [Display(Order = 16)]
         public WeaponRangedEnum WeaponRanged { get; set; }
 
         [Category("Model")]
@@ -200,6 +225,7 @@ namespace ProtagSumiConfig.Configuration
         [Description("Choose between Violet's rapier or Joker's daggers.")]
         [DefaultValue(MeleeRangedEnum.Rapier)]
         [Display(Order = 16)]
+        [Display(Order = 17)]
         public MeleeRangedEnum MeleeRanged { get; set; }
 
         [Category("Flowscript and BMD")]
@@ -207,6 +233,7 @@ namespace ProtagSumiConfig.Configuration
         [Description("Contains event, flowscript, & msg edits to make the Yongen-Jaya Bath House women's only.")]
         [DefaultValue(true)]
         [Display(Order = 17)]
+        [Display(Order = 18)]
         public bool Bathhouse { get; set; } = true;
 
         [Category("Flowscript and BMD")]
@@ -214,13 +241,15 @@ namespace ProtagSumiConfig.Configuration
         [Description("Allows you to enter the women's bathroom at Shujin Academy.")]
         [DefaultValue(true)]
         [Display(Order = 18)]
+        [Display(Order = 19)]
         public bool Restroom { get; set; } = true;
 
         [Category("Events")]
         [DisplayName("Event Fixes")]
-		[Description("Tweaks various events to fix issues with protag Sumi. Disable this if you're having issues with other mods that edit events.")]
-		[DefaultValue(true)]
+        [Description("Tweaks various events to fix issues with protag Sumi. Disable this if you're having issues with other mods that edit events.")]
+        [DefaultValue(true)]
         [Display(Order = 19)]
+        [Display(Order = 20)]
         public bool EventEdits1 { get; set; } = true; // bool used in Mod.CS, not the folder name, but the bool name
 
         [Category("Events")]
@@ -228,6 +257,7 @@ namespace ProtagSumiConfig.Configuration
         [Description("Contains major edits to select events. Disable this if you're having issues with other mods that edit events.")]
         [DefaultValue(true)]
         [Display(Order = 20)]
+        [Display(Order = 21)]
         public bool EventEditsBig { get; set; } = true;
     }
 
@@ -235,8 +265,8 @@ namespace ProtagSumiConfig.Configuration
     /// Allows you to override certain aspects of the configuration creation process (e.g. create multiple configurations).
     /// Override elements in <see cref="ConfiguratorMixinBase"/> for finer control.
     /// </summary>
-	public class ConfiguratorMixin : ConfiguratorMixinBase
-	{
-		// 
-	}
+    public class ConfiguratorMixin : ConfiguratorMixinBase
+    {
+        // 
+    }
 }
