@@ -98,6 +98,14 @@ namespace ProtagSumiConfig.Configuration
             OnedCalledJay,
         }
 
+        public enum TemplePose
+        {
+            [Display(Name = "Seiza (Default)")]
+            Seiza,
+            [Display(Name = "Lotus")]
+            Lotus,
+        }
+
 
         [Category("Bustup")]
         [DisplayName("Bustups")]
@@ -169,12 +177,19 @@ namespace ProtagSumiConfig.Configuration
         [Display(Order = 11)]
         public bool AltMetaRun { get; set; } = false;
 
-        [Category("Model")]
+        [Category("Costumes")]
         [DisplayName("Costumes")]
         [Description("Enables costumes. Keep this option ENABLED unless it's causing issues.")]
         [DefaultValue(true)]
         [Display(Order = 12)]
         public bool CostumeSupport { get; set; } = true;
+
+        [Category("Costumes")]
+        [DisplayName("Costume Music")]
+        [Description("Enables costume music for all Protagonist costumes that support it.")]
+        [DefaultValue(true)]
+        [Display(Order = 13)]
+        public bool CostumeMusicMain { get; set; } = true;
 
         [Category("Model")]
         [DisplayName("Undarkened Face")]
@@ -217,6 +232,13 @@ namespace ProtagSumiConfig.Configuration
         [DefaultValue(MeleeRangedEnum.Rapier)]
         [Display(Order = 18)]
         public MeleeRangedEnum MeleeRanged { get; set; }
+
+        [Category("Model")]
+        [DisplayName("Temple Position")]
+        [Description("Choose between a Seiza position (animation by MugikoMachi) or a Lotus position when meditating at the temple.")]
+        [DefaultValue(TemplePose.Seiza)]
+        [Display(Order = 19)]
+        public TemplePose TemplePose2 { get; set; }
 
         [Category("Flowscript and BMD")]
         [DisplayName("Bathhouse Edits")]

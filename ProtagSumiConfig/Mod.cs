@@ -128,6 +128,15 @@ namespace ProtagSumiConfig
                 );
             }
 
+            // Lotus
+            if (_configuration.TemplePose2 == Config.TemplePose.Lotus)
+            {
+                BindAllFilesIn(
+                    Path.Combine("OptionalModFiles", "Animation", "Lotus"),
+                    modDir, criFsApi, modId
+                );
+            }
+
             // Women’s Bath House (includes BF/BMD dirs)
             if (_configuration.Bathhouse)
             {
@@ -189,6 +198,10 @@ namespace ProtagSumiConfig
             {
                 criFsApi.AddProbingPath(Path.Combine(modDir, "OptionalModFiles", "Misc", "Movie"));
             }
+
+            // Costume Music
+            if (_configuration.CostumeMusicMain)
+                costumeApi.AddCostumesFolder(modDir, Path.Combine(modDir, "OptionalModFiles", "CostumeMusic"));
 
             // NoAoAArt
             if (_configuration.AoAArt == Config.AoAArtEnum.Enabled ||
