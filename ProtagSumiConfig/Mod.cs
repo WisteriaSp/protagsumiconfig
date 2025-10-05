@@ -266,6 +266,16 @@ namespace ProtagSumiConfig
                 spdEmu.AddDirectory(Path.Combine(modDir, "OptionalModFiles", "Audio", "SPD"));
             }
 
+            // Miniboss Music
+            if (_configuration.YoshizawaNotif)
+            {
+                var audioFolder = Path.Combine(modDir, "OptionalModFiles", "Audio", "YoshizawaNotif");
+                if (Directory.Exists(audioFolder))
+                {
+                    ryoApi.AddAudioPath(audioFolder, null);
+                }
+            }
+
             // Bustup (OneCalledJay or L7M3)
             if (_configuration.Bustup1 == Config.BustupSelection.OnedCalledJay ||
                 _configuration.Bustup1 == Config.BustupSelection.L7M3)

@@ -114,32 +114,39 @@ namespace ProtagSumiConfig.Configuration
         [Display(Order = 1)]
         public BustupSelection Bustup1 { get; set; }
 
+        [Category("Audio")]
+        [DisplayName("Show to Remember over Keeper of Lust")]
+        [Description("Replaces Keeper of Lust with an original miniboss track by PeaMix.")]
+        [DefaultValue(true)]
+        [Display(Order = 2)]
+        public bool MiniBossMusic { get; set; } = true;
+
+        [Category("Audio")]
+        [DisplayName("Yoshizawa's Notification Tone")]
+        [Description("Replaces the phone notification sound with Yoshizawa's.")]
+        [DefaultValue(true)]
+        [Display(Order = 3)]
+        public bool YoshizawaNotif { get; set; } = true;
+
         [Category("Misc")]
         [DisplayName("Opening Movie")]
         [Description("Changes the Opening Movie to a Kasumi version of Wake Up Get Up Get Out There (By Arbiter).")]
         [DefaultValue(true)]
-        [Display(Order = 2)]
+        [Display(Order = 4)]
         public bool OpeningMovie { get; set; } = true;
 
         [Category("Misc")]
         [DisplayName("Added Thieves Den Art")]
         [Description("Adds new art to the Thieves Den based on this mod!")]
         [DefaultValue(true)]
-        [Display(Order = 3)]
+        [Display(Order = 5)]
         public bool ThievesDenAddon { get; set; } = true;
-
-        [Category("Misc")]
-        [DisplayName("Show to Remember over Keeper of Lust")]
-        [Description("Replaces Keeper of Lust with an original miniboss track by PeaMix.")]
-        [DefaultValue(true)]
-        [Display(Order = 4)]
-        public bool MiniBossMusic { get; set; } = true;
 
         [Category("Misc")]
         [DisplayName("Pause Menu Art")]
         [Description("Select your preferred Pause Menu art.")]
         [DefaultValue(MenuArtEnum.Default)]
-        [Display(Order = 5)]
+        [Display(Order = 6)]
         public MenuArtEnum MenuArt { get; set; }
 
         [Category("Misc")]
